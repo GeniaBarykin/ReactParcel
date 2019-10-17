@@ -17,4 +17,5 @@ create table if not exists highScores(
 );
 
 insert or replace into highScores(userName,highscore) values("user", 210);
+insert or replace into highScores(userName,highscore) values("hyzaq", 210);
 insert or replace into highScores(userName,highscore) values("user", 65);

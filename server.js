@@ -1,12 +1,12 @@
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 const fs = require('fs');
 const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 
 // Create an express app
-var app = express();
+const app = express();
 
 // Open the database
 createDb();
@@ -28,9 +28,7 @@ function createDb(ready) {
 // Configure express to automatically decode WWW FORM bodies
 app.use(bodyParser.json());
 
-app.use(require('./rest-api'));
-
-//Serve static data form our Parcel Middleware
+//Serve static data from our Parcel Middleware
 app.use(serveStatic(path.join(__dirname, 'dist')));
 
 // Put a reference to our db in the request, so that rules can easily access it.
@@ -39,6 +37,8 @@ app.use(function(req,rsp,next){
     next();
 });
 
+//Include our rest api
+app.use(require('./rest-api/api-index'));
 
 var port = process.env.PORT || 5000;
 app.listen(port);
