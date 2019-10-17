@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-router.use('/api/accounts', require('./accounts'));
+router.use('/api/users', require('./users'));
 router.use('/api/highScores', require('./highScores'));
 router.use('/api/auth', require('./auth'));
 

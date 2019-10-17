@@ -25,11 +25,11 @@ function createDb(ready) {
     next();
 }
 
-// Configure express to automatically decode WWW FORM bodies
-app.use(bodyParser.json());
-
 //Serve static data from our Parcel Middleware
 app.use(serveStatic(path.join(__dirname, 'dist')));
+
+// Configure express to automatically decode WWW FORM bodies
+app.use(bodyParser.json());
 
 // Put a reference to our db in the request, so that rules can easily access it.
 app.use(function(req,rsp,next){

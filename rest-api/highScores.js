@@ -51,11 +51,10 @@ router.get('/:name', function (req, rsp) {
 });
 
 /**
- * 'Likes' a beer
+ * Adds a score to a user
  */
 router.post('/', function (req, rsp) {
-    let userName = req.body.userName;
-    rsp.status(201).json({userName: userName});
+    let userName = req.params.name;
     let score = req.body.score;
 
     req.db.get('select * from highScores where userName = ?', userName, function (err, userName) {
