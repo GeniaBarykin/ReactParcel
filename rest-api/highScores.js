@@ -25,11 +25,24 @@ let userName;
 // });
 
 /**
- * Gets the list of highscores
+ * Gets a list of all highscores and userNames sorted by score
+ */
+
+router.get('/', function (req, rsp){
+   req.db.all('SELECT * FROM highScores ORDER BY highscore DESC', function(err, highScores){
+       if(!highScores) rsp.status(404).json({error: "No highScores found"});
+       else{
+           rsp.status(200).json(highScores);
+       }
+   })
+});
+
+/**
+ * Gets the scores of a user
  */
 router.get('/:name', function (req, rsp) {
     let userName = req.params.name;
-    req.db.get('select * from highScores where userName = ?', userName, function (err, highScore) {
+    req.db.get('SELECT * from highScores WHERE userName = ?', userName, function (err, highScore) {
         if (!highScore) rsp.status(404).json({error: "User does not exist"});
         else {
             rsp.status(200).json(highScore);

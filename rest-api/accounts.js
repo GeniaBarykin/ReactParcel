@@ -5,25 +5,25 @@ const bcrypt = require('bcrypt');
 
 let level;
 
-/**
- * Checks authorization
- */
-router.use(function (req, rsp, next) {
-    if (req.headers.authorization === undefined) rsp.status(401).json({error: "No permission"});
-    else {
-        var token = req.headers.authorization.split(' ')[1];
-        jwt.verify(token, JWT_SECRET, function (err, decoded) {
-            if (err) throw err;
-            console.log(decoded);
-            if (decoded.level === 1 || decoded.level === 9) {
-                level = decoded.level;
-                next();
-            } else {
-                rsp.status(401).json({error: "No permission"});
-            }
-        });
-    }
-});
+// /**
+//  * Checks authorization
+//  */
+// router.use(function (req, rsp, next) {
+//     if (req.headers.authorization === undefined) rsp.status(401).json({error: "No permission"});
+//     else {
+//         var token = req.headers.authorization.split(' ')[1];
+//         jwt.verify(token, JWT_SECRET, function (err, decoded) {
+//             if (err) throw err;
+//             console.log(decoded);
+//             if (decoded.level === 1 || decoded.level === 9) {
+//                 level = decoded.level;
+//                 next();
+//             } else {
+//                 rsp.status(401).json({error: "No permission"});
+//             }
+//         });
+//     }
+// });
 
 /**
  * Gets list of users for all users with token

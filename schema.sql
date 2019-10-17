@@ -1,14 +1,21 @@
-create table if not exists accounts(
+create table if not exists users(
   name text primary key,
   bcryptPassword text not null,
   level int not null default 1 /* 1=user 5=maintainer 9=owner */
 );
 
-insert or replace into accounts(name,bcryptPassword,level) values(
+insert or replace into users(name,bcryptPassword,level) values(
   "user",
   "$2b$12$aSC4i0puHmBhEOPdm/ocKOJD4Se3KiajWMznvdx4vN.p./yEWfuee",
   1
 );
+
+insert or replace into users(name,bcryptPassword,level) values(
+  "user2",
+  "$2b$12$9BwyzrkCBioedc6.YLh6xO8jWpHfMeN6hrguMR7qAY7m8CSGrt8Si",
+  1
+);
+
 
 create table if not exists highScores(
     userName text not null,
@@ -16,6 +23,6 @@ create table if not exists highScores(
     primary key (userName, highscore)
 );
 
+insert into highScores(userName, highscore) values("user", 154);
 insert or replace into highScores(userName,highscore) values("user", 210);
-insert or replace into highScores(userName,highscore) values("hyzaq", 210);
-insert or replace into highScores(userName,highscore) values("user", 65);
+insert into or replace highScores(userName,highscore) values("user2", 65);
