@@ -28,7 +28,7 @@ function createDb(ready) {
 // Configure express to automatically decode WWW FORM bodies
 app.use(bodyParser.json());
 
-app.use(require('./routers'));
+app.use(require('./rest-api'));
 
 //Serve static data form our Parcel Middleware
 app.use(serveStatic(path.join(__dirname, 'dist')));

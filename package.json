@@ -10,15 +10,6 @@
     "parcel:watch": "./node_modules/.bin/parcel watch index.html",
     "parcel:build": "./node_modules/.bin/parcel build index.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/THEozmic/getting-started-parcel.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/THEozmic/getting-started-parcel/issues"
-  },
   "homepage": "https://github.com/THEozmic/getting-started-parcel#readme",
   "dependencies": {
     "express": "^4.16.3",
@@ -27,7 +18,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "serve-static": "^1.13.2",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
     "react-router": "^5.1.2"
   }
 }
