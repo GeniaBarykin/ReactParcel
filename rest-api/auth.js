@@ -41,29 +41,6 @@ router.post("/", function (req, rsp) {
 });
 
 /**
- * Adds a new user
- * Can be used by new users
- */
-router.post('/new', function (req, rsp) {
-    let {name, password} = req.body;
-
-    req.db.get('select * from users where name=?', name, function (err, user) {
-        if (user) rsp.status(403).json({error: "A user with that name already exists"});
-        else {
-            bcrypt.genSalt(10, function (err, salt) {
-                bcrypt.hash(password, salt, function (err, hash) {
-                    if (err) throw (err)
-                    req.db.run('insert into users values (?,?,?)', [name, hash, 1], function (err, user) {
-                        if (err) throw (err);
-                        rsp.status(201).json({createdUser: name});
-                    });
-                });
-            });
-        }
-    });
-});
-
-/**
  * Checks authorization
  */
 router.get('/check', function (req, rsp){
