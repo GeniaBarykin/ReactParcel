@@ -27,20 +27,24 @@ let level;
 
 /**
  * Gets list of users for all users with token
+ * Only for admin
  */
 router.get("/", function (req, rsp) {
-    req.db.all("SELECT * FROM users", (error, users) => {
-        if (error) throw error;
-        rsp.status(200).send(users);
-    });
+    if(level === 9) {
+        req.db.all("SELECT * FROM users", (error, users) => {
+            if (error) throw error;
+            rsp.status(200).send(users);
+        });
+    } else {
+        rsp.status(401).json({error: "Only the admin can show all users"});
+    }
 });
 
 /**
  * Adds a new user
- * For Admin only!
+ * Can be used by new users
  */
 router.post('/', function (req, rsp) {
-    if (level === 9) { //9lv - is an admin
         let {name, password, level} = req.body;
 
         req.db.get('select * from users where name=?', name, function (err, user) {
@@ -51,13 +55,10 @@ router.post('/', function (req, rsp) {
                         if (err) throw (err)
                         req.db.run('insert into users values (?,?,?)', [name, hash, level], function (err, user) {
                             if (err) throw (err);
-                            rsp.status(201).json({createdUser: name,});
+                            rsp.status(201).json({createdUser: name});
                         });
                     });
                 });
             }
         });
-    } else {
-        rsp.status(401).json({error: "Only admin can add a new user"});
-    }
 });

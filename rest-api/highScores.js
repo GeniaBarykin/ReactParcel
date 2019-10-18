@@ -42,7 +42,7 @@ router.get('/', function (req, rsp){
  */
 router.get('/:name', function (req, rsp) {
     let userName = req.params.name;
-    req.db.get('SELECT * from highScores WHERE userName = ?', userName, function (err, highScore) {
+    req.db.all('SELECT * from highScores WHERE userName = ?', userName, function (err, highScore) {
         if (!highScore) rsp.status(404).json({error: "User does not exist"});
         else {
             rsp.status(200).json(highScore);
@@ -54,37 +54,36 @@ router.get('/:name', function (req, rsp) {
  * Adds a score to a user
  */
 router.post('/', function (req, rsp) {
-    let userName = req.params.name;
-    let score = req.body.score;
+    let {name, score} = req.body;
 
-    req.db.get('select * from highScores where userName = ?', userName, function (err, userName) {
+    req.db.get('select * from highScores where userName = ?', name, function (err, userName) {
         if (err) throw err;
         if (!userName) rsp.status(404).json({error: "No such user!"});
         else {
-            req.db.run('insert into highScores values(?,?)', [userName, score]);
-            rsp.status(201).json({userName:userName, score: score});
+            req.db.run('insert into highScores values(?,?)', [name, score]);
+            rsp.status(201).json({userName:name, score: score});
         }
     })
 });
 
-/**
- * 'Dislikes' a beer
- */
-router.delete('/:beerId', function (req, rsp) {
-    //Get userId
-    let beerId = req.params.beerId;
-
-    req.db.get('select * from beers where id = ?', beerId, function (err, beer) {
-        if (err) throw err;
-        if (!beer) rsp.status(404).json({error: "No such beer!"});
-        else {
-            req.db.get('select * from likes where userName=? and beerId = ?', [userName, beerId], function (err, like) {
-                if (!like) rsp.status(403).json({error: "You can't unlike not-liked beer!"});
-                else {
-                    req.db.run('delete from likes where userName = ? and beerId = ?', [userName, beerId]);
-                    rsp.status(200).json(like);
-                }
-            });
-        }
-    });
-});
+// /**
+//  * 'Dislikes' a beer
+//  */
+// router.delete('/:beerId', function (req, rsp) {
+//     //Get userId
+//     let beerId = req.params.beerId;
+//
+//     req.db.get('select * from beers where id = ?', beerId, function (err, beer) {
+//         if (err) throw err;
+//         if (!beer) rsp.status(404).json({error: "No such beer!"});
+//         else {
+//             req.db.get('select * from likes where userName=? and beerId = ?', [userName, beerId], function (err, like) {
+//                 if (!like) rsp.status(403).json({error: "You can't unlike not-liked beer!"});
+//                 else {
+//                     req.db.run('delete from likes where userName = ? and beerId = ?', [userName, beerId]);
+//                     rsp.status(200).json(like);
+//                 }
+//             });
+//         }
+//     });
+// });

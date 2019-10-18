@@ -15,7 +15,7 @@ function createDb(ready) {
     app.db = new sqlite3.Database('data/sqlite3.db');
 
     // Make sure tables and initial data exist in the database
-    let stmts = fs.readFileSync('schema.sql').toString().split(/;\s*\n/);
+    let stmts = fs.readFileSync('data/schema.sql').toString().split(/;\s*\n/);
     function next(err) {
         if (err) console.warn(err);
         let stmt = stmts.shift();
@@ -25,11 +25,11 @@ function createDb(ready) {
     next();
 }
 
-//Serve static data from our Parcel Middleware
-app.use(serveStatic(path.join(__dirname, 'dist')));
-
 // Configure express to automatically decode WWW FORM bodies
 app.use(bodyParser.json());
+
+//Serve static data from our Parcel Middleware
+app.use(serveStatic(path.join(__dirname, 'dist')));
 
 // Put a reference to our db in the request, so that rules can easily access it.
 app.use(function(req,rsp,next){
