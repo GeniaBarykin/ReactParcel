@@ -12,7 +12,17 @@ router.post("/", function (req, rsp) {
     req.db.get('SELECT * FROM users WHERE name=?', [name], (error, userDB) => {
         if (error) throw error;
         if (userDB === undefined) {
-            rsp.status(404).json({error: "User not found"});
+            {
+                bcrypt.genSalt(10, function (err, salt) {
+                    bcrypt.hash(password, salt, function (err, hash) {
+                        if (err) throw (err)
+                        req.db.run('insert into users values (?,?,?)', [name, hash, 1], function (err, user) {
+                            if (err) throw (err);
+                            rsp.status(201).json({createdUser: name});
+                        });
+                    });
+                });
+            }
         } else {
             bcrypt.compare(password, userDB.bcryptPassword, function (error, res) {
                 if (error) throw error;

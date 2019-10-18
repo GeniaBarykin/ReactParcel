@@ -6,6 +6,10 @@ const bcrypt = require('bcrypt');
 const express = require("express");
 const bodyParser = require("body-parser");
 
+router.get('/', function(req, res) {
+    res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
+});
+
 const app = express();
 app.use(bodyParser.json());
 
