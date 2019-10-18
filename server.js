@@ -30,9 +30,9 @@ app.use(bodyParser.json());
 
 //Serve static data from our Parcel Middleware
 app.use(serveStatic(path.join(__dirname, 'dist')));
-app.get('*', function(req, res) {
-    res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
-});
+// app.get('*', function(req, res) {
+//     res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
+// });
 
 // Put a reference to our db in the request, so that rules can easily access it.
 app.use(function(req,rsp,next){

@@ -33,16 +33,17 @@ router.get('/:name', function (req, rsp) {
 });
 
 /**
- * Adds a score to a user
+ * Adds a click to the users score
  */
 router.post('/', function (req, rsp) {
-    let {name, score} = req.body;
+    let name = req.body.name;
 
-    req.db.get('select * from highScores where userName = ?', name, function (err, userName) {
+    req.db.get('SELECT highscore FROM highScores WHERE userName = ?', name, function (err, highscore) {
         if (err) throw err;
-        if (!userName) rsp.status(404).json({error: "No such user!"});
+        if (!highscore) rsp.status(404).json({error: "No such user!"});
         else {
-            req.db.run('insert into highScores values(?,?)', [name, score]);
+            let score = highscore + 1;
+            req.db.run('UPDATE highScores SET highscore = ? WHERE userName = ?', (score, name));
             rsp.status(201).json({userName:name, score: score});
         }
     })

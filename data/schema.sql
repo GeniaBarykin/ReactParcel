@@ -13,14 +13,13 @@ insert or replace into users(name,bcryptPassword,level) values(
 insert or replace into users(name,bcryptPassword,level) values(
   "admin",
   "$2b$12$9BwyzrkCBioedc6.YLh6xO8jWpHfMeN6hrguMR7qAY7m8CSGrt8Si",
-  9
+  1
 );
 
 
 create table if not exists highScores(
-    userName text not null,
-    highscore int not null,
-    primary key (userName, highscore)
-);
+    userName text primary key,
+    highscore int
+    );
 
 insert or replace into highScores(userName,highscore) values("user", 210);
