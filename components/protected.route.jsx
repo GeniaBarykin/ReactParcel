@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import auth from "./auth";
 
 export const ProtectedRoute = ({
                                    component: Component,
@@ -10,7 +9,8 @@ export const ProtectedRoute = ({
         <Route
             {...rest}
             render={props => {
-                if (auth.isAuthenticated()) {
+                //check auth
+                if (1==2) {
                     return <Component {...props} />;
                 } else {
                     window.location.replace("/");

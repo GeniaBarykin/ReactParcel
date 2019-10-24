@@ -1,13 +1,11 @@
 import React from "react";
-import auth from "./auth";
-
 export const Unauthorized = props => {
     return (
         <div>
             <h1>Unauthorized</h1>
             <button
                 onClick={() => {
-                        window.location.replace("/login");
+                        window.location=("/login");
                 }}
             >
                 Login

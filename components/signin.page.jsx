@@ -16,7 +16,7 @@ export class SignIn extends React.Component{
         };
         alert('The data is: ' + JSON.stringify(this.data));
         urlPostRequest("/auth/new", this.data, true);
-        window.location.replace("/login");
+        window.location.replace("/");
     }
 
 
