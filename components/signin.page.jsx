@@ -1,47 +1,38 @@
 import React,{ useState } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {urlPostRequest} from "./xhr.functions";
 
-export const SignIn = props =>  {
-    // Declare a new state variable, which we'll call "count"
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        //xmr signIn
+export class SignIn extends React.Component{
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    function validateForm() {
-        return username.length > 0 && password.length > 0;
+    handleSubmit(e) {
+        e.preventDefault();
+        this.data = {
+            username:this.username.value,
+            password:this.password.value
+        };
+        alert('The data is: ' + JSON.stringify(this.data));
+        urlPostRequest("/auth/new", this.data, true);
+        window.location.replace("/login");
     }
 
 
-    return (
-        <div className="SignIn">
-            <form onSubmit={handleSubmit}>
-                <FormGroup controlId="email" bsSize="large">
-                    <ControlLabel>Email</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="text"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                    />
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        type="password"
-                    />
-                </FormGroup>
-                <Button block bsSize="large" disabled={!validateForm()} type="submit">
-                    Sign In
-                </Button>
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Name:
+                    <input type="text" ref={(input) => this.username = input} />
+                    <input type="text" ref={(input) => this.password = input} />
+                </label>
+                <input type="submit" value="Create user" />
             </form>
-        </div>
-    );
+        );
+    }
 }
 
 
