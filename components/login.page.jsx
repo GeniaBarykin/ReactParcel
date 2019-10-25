@@ -16,13 +16,15 @@ export class Login extends React.Component{
         axios.post('/api/auth', this.data).then(res => {
             localStorage.setItem("secret-key", res.data.token);
             this.props.history.push("/app");
+        }).catch(err => {
+           document.getElementById('warning').innerText="Password do not match";
         });
     }
 
 
-
     render() {
         return (
+            <div>
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Name:
@@ -31,6 +33,8 @@ export class Login extends React.Component{
                 </label>
                 <input type="submit" value="Login" />
             </form>
+                <h5 id={'warning'}></h5>
+            </div>
         );
     }
 }

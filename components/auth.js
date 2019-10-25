@@ -20,6 +20,7 @@ export class Auth extends React.Component{
         axios.get("/api/auth/check", {headers: {Authorization: 'Bearer '+jwt}}).then(res => this.setState({
             user: res.data
         })).catch(err => {
+            alert(err);
             window.location="/";
         })
     }
@@ -34,6 +35,7 @@ export class Auth extends React.Component{
         }
         return (
             <div>
+                <h3>Hello {this.state.user.name}</h3>
                 {this.props.children}
             </div>
         )
