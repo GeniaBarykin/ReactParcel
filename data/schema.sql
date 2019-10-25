@@ -18,8 +18,6 @@ insert or replace into users(name,bcryptPassword,level) values(
 
 
 create table if not exists highScores(
-    userName text primary key,
+    userName text,
     highscore int
     );
-
-insert or replace into highScores(userName,highscore) values("user", 210);
