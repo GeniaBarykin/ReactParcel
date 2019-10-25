@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "parcel:dev": "./node_modules/.bin/parcel index.html",
+    "parcel:dev": "./node_modules/.bin/parcel  index.html",
     "parcel:watch": "./node_modules/.bin/parcel watch index.html",
     "parcel:build": "./node_modules/.bin/parcel build index.html"
   },

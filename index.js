@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {AppLayout} from "./components/app.page";
 import {Login} from "./components/login.page";
-import {HighScores} from "./components/highscores.page";
 import {Auth} from "./components/auth";
 
 
@@ -14,7 +13,7 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Auth >
-                    <Route exact path="/play" component={HighScores} />
+                    {/*<Route exact path="/play" component={HighScores} />*/}
                     <Route exact path="/app" component={AppLayout}/>
                 </Auth>
                 <Route path="*" component={() => "404 NOT FOUND"} />

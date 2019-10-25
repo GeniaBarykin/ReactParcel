@@ -13,7 +13,6 @@ export class AppLayout extends React.Component{
                 const persons = res.data;
                 this.setState({ persons });
             })
-
     }
 
     render() {

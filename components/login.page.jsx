@@ -1,5 +1,6 @@
 import React,{ useState } from 'react';
 import axios from 'axios';
+import {Redirect} from "react-router";
 
 export class Login extends React.Component{
     constructor(props) {
@@ -23,18 +24,33 @@ export class Login extends React.Component{
 
 
     render() {
-        return (
-            <div>
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" ref={(input) => this.username = input} />
-                    <input type="text" ref={(input) => this.password = input} />
-                </label>
-                <input type="submit" value="Login" />
-            </form>
-                <h5 id={'warning'}></h5>
-            </div>
-        );
+        if(localStorage.getItem('secret-key')){
+            return (
+                <Redirect
+                    to={{
+                        pathname: "/app",
+                        state: {
+                            from: this.props.location
+                        }
+                    }}
+                />
+            )
+        } else {
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Name:
+                            <input type="text" ref={(input) => this.username = input} />
+                            <input type="text" ref={(input) => this.password = input} />
+                        </label>
+                        <input type="submit" value="Login" />
+                    </form>
+                    <h5 id={'warning'}></h5>
+                </div>
+            );
+        }
+
     }
+
 }

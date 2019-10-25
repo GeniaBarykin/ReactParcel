@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { withRouter} from "react-router";
-import {getJwt} from "./helpers/jwt";
 
 export class Auth extends React.Component{
     constructor(props){
@@ -13,16 +12,20 @@ export class Auth extends React.Component{
     }
 
     componentDidMount() {
-        const  jwt=getJwt();
+        const  jwt=localStorage.getItem('secret-key');
         if(!jwt){
             window.location="/";
         }
         axios.get("/api/auth/check", {headers: {Authorization: 'Bearer '+jwt}}).then(res => this.setState({
             user: res.data
         })).catch(err => {
-            alert(err);
             window.location="/";
         })
+    }
+
+    logout(){
+        localStorage.removeItem("secret-key");
+        window.location="/";
     }
 
     render() {
@@ -37,6 +40,7 @@ export class Auth extends React.Component{
             <div>
                 <h3>Hello {this.state.user.name}</h3>
                 {this.props.children}
+                <button onClick={this.logout}>Logout</button>
             </div>
         )
     }
