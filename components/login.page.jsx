@@ -1,5 +1,4 @@
 import React,{ useState } from 'react';
-import {urlPostRequest} from "./xhr.functions";
 import axios from 'axios';
 
 export class Login extends React.Component{

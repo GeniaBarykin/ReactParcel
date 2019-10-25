@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ProtectedRoute } from "./components/protected.route";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {AppLayout} from "./components/app.page";
