@@ -306,7 +306,8 @@ h2 > .material-icons {
 }
 
 #currentUser{
-    background: rgba(239, 107, 0, 0.55);
+    border-radius: 3px;
+    border: 4px solid aqua;
 }
 
 #backToHall{
