@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
 import {urlPostRequest} from "./xhr.functions";
-
+import axios from 'axios';
 
 export class Login extends React.Component{
     constructor(props) {
@@ -11,13 +11,13 @@ export class Login extends React.Component{
     handleSubmit(e) {
         e.preventDefault();
         this.data = {
-                        username:this.username.value,
-                        password:this.password.value
-                    };
-        alert('The data is: ' + this.data);
-        urlPostRequest("/auth", this.data, true);
-        window.location.replace("/app");
-
+            name:this.username.value,
+            password:this.password.value
+        };
+        axios.post('/api/auth', this.data).then(res => {
+            localStorage.setItem("secret-key", res.data.token);
+            this.props.history.push("/app");
+        });
     }
 
 
@@ -35,6 +35,3 @@ export class Login extends React.Component{
         );
     }
 }
-
-
-

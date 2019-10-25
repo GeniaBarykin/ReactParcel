@@ -18,7 +18,11 @@ router.post("/", function (req, rsp) {
                         if (err) throw (err)
                         req.db.run('insert into users values (?,?,?)', [name, hash, 1], function (err, user) {
                             if (err) throw (err);
-                            rsp.status(201).json({createdUser: name});
+                            let token = jwt.sign({
+                                userName: name,
+                                level: 1
+                            }, JWT_SECRET, {expiresIn: 120000000});
+                            rsp.status(201).json({username: name, token:  token});
                         });
                     });
                 });
@@ -31,7 +35,7 @@ router.post("/", function (req, rsp) {
                         userName: userDB.name,
                         level: userDB.level
                     }, JWT_SECRET, {expiresIn: 120000000});
-                    rsp.status(201).json({loggedInUser: name, token: token});
+                    rsp.status(201).json({username: name, token: token});
                 } else {
                     rsp.status(403).json({error: "Invalid credentials"});
                 }
@@ -49,13 +53,11 @@ router.get('/check', function (req, rsp){
         var token = req.headers.authorization.split(' ')[1];
         jwt.verify(token, JWT_SECRET, function (err, decoded) {
             if (err) throw err;
-            console.log(decoded)
             if (decoded.level === 1 || decoded.level === 9) {
                 userName = decoded.userName;
-                rsp.status(201).json({authorized:true});
-            } else {
-                rsp.status(201).json({authorized:false});
+                rsp.status(201).json({name: userName});
             }
         });
     }
 });
+
