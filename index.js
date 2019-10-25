@@ -14,7 +14,7 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Auth >
-                    <Route exact path="/highscores" component={HighScores} />
+                    <Route exact path="/play" component={HighScores} />
                     <Route exact path="/app" component={AppLayout}/>
                 </Auth>
                 <Route path="*" component={() => "404 NOT FOUND"} />
