@@ -16,7 +16,7 @@ export class Login extends React.Component{
                     };
         alert('The data is: ' + this.data);
         urlPostRequest("/auth", this.data, true);
-        window.location.replace("/");
+        window.location.replace("/app");
 
     }
 
