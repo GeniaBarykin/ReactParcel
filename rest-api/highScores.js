@@ -30,10 +30,10 @@ router.use(function (req, rsp, next) {
 router.get('/', function (req, rsp){
    req.db.all('SELECT * FROM highScores ORDER BY highscore DESC', function(err, highScores){
        if(!highScores) rsp.status(200).json({
-           list: {
+           list: [{
                "userName": 'No one played yet',
                "highscore": "be the first"
-           },
+           }],
            currentUser: userName
        });
        else{
