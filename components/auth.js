@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { withRouter} from "react-router";
+import './StyleSheet.css'
 
 export class Auth extends React.Component{
     constructor(props){
@@ -38,7 +39,7 @@ export class Auth extends React.Component{
         }
         return (
             <div>
-                <h3>Hello {this.state.user.name}</h3>
+                <h2>Hello {this.state.user.name}</h2>
                 {this.props.children}
                 <button onClick={this.logout}>Logout</button>
             </div>

@@ -1,5 +1,7 @@
 import React from "react";
 import axios from 'axios';
+import './StyleSheet.css'
+let clickCounter = 0;
 
 export class AppLayout extends React.Component{
     constructor(props) {
@@ -15,11 +17,36 @@ export class AppLayout extends React.Component{
             })
     }
 
+    componentWillUnmount() {
+    }
+
+    clickedButton(){
+        clickCounter++;
+        document.getElementById('clickerButton').innerHTML = clickCounter;
+    }
+
     render() {
         return (
-            <ul>
-                { this.state.persons.map((person, index) => <li key={index}>{person.userName} {person.highscore}</li>)}
-            </ul>
+            <main>
+                <div>
+                    <section className="card checked">
+                        <div className="inputRow">
+                            <h1>Click-the-button!</h1>
+                        </div>
+                        <div className="clicker">
+                            <button id='clickerButton' onClick={this.clickedButton}>0</button>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <div>
+                            <ol className= "highscore">
+                                { this.state.persons.map((person, index) => <li className="highscore" key={index}>{person.userName} : {person.highscore}</li>)}
+                            </ol>
+                        </div>
+                    </section>
+                </div>
+            </main>
         )
     }
 };

@@ -11,6 +11,23 @@ body {
 main {
     max-widh: 800px;
     margin: 0 auto;
+    margin-bottom: 1em;
+}
+
+ol.highscore{
+    font-size: inherit;
+    padding: 0.5em;
+    border-radius: 3px;
+    border: 2px solid #ef6b00;
+    outline-width: 0;
+}
+
+li.highscore{
+    text-align: center;
+    font-size: 30px;
+    list-style-position: inside;
+    padding: 0.5em;
+    border-radius: 3px;
 }
 
 input, button, select {
@@ -36,6 +53,7 @@ input, button, select {
 
 .buttonRow, .inputRow {
     display: flex;
+    margin-bottom: 15px;
     justify-content: flex-end;
     align-items: center;
 }
@@ -117,6 +135,16 @@ section.card {
     margin-top: 20px;
     border: 1px solid #eee;
     padding: 15px;
+}
+
+section.form.loginForm{
+
+}
+
+label{
+    font-size: 20px;
+    border-radius: 3px;
+    margin-bottom: 20px;
 }
 
 section.priority {

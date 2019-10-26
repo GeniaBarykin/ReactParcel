@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import axios from 'axios';
 import {Redirect} from "react-router";
+import './StyleSheet.css'
 
 export class Login extends React.Component{
     constructor(props) {
@@ -18,7 +19,7 @@ export class Login extends React.Component{
             localStorage.setItem("secret-key", res.data.token);
             this.props.history.push("/app");
         }).catch(err => {
-           document.getElementById('warning').innerText="Password do not match";
+           document.getElementById('warning').innerText = err.response.data.error;
         });
     }
 
@@ -38,15 +39,19 @@ export class Login extends React.Component{
         } else {
             return (
                 <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Name:
-                            <input type="text" ref={(input) => this.username = input} />
-                            <input type="text" ref={(input) => this.password = input} />
-                        </label>
-                        <input type="submit" value="Login" />
-                    </form>
-                    <h5 id={'warning'}></h5>
+                    <section className = "card">
+                        <form className="loginForm" onSubmit={this.handleSubmit}>
+                            <label>
+                                <label>Name:</label>
+                                <input type="text" id = "userName" className="inputRow" ref={(input) => this.username = input} />
+
+                                <label>Password:</label>
+                                <input type="text" id = "password" className="inputRow" ref={(input) => this.password = input} />
+                            </label>
+                            <button className = "buttonRow" type="submit"> login</button>
+                        </form>
+                        <h5 id={'warning'}></h5>
+                    </section>
                 </div>
             );
         }

@@ -9,39 +9,45 @@ const bcrypt = require('bcrypt');
  */
 router.post("/", function (req, rsp) {
     let {name, password} = req.body;
-    req.db.get('SELECT * FROM users WHERE name=?', [name], (error, userDB) => {
-        if (error) throw error;
-        if (userDB === undefined) {
-            {
-                bcrypt.genSalt(10, function (err, salt) {
-                    bcrypt.hash(password, salt, function (err, hash) {
-                        if (err) throw (err)
-                        req.db.run('insert into users values (?,?,?)', [name, hash, 1], function (err, user) {
-                            if (err) throw (err);
-                            let token = jwt.sign({
-                                userName: name,
-                                level: 1
-                            }, JWT_SECRET, {expiresIn: 120000000});
-                            rsp.status(201).json({username: name, token:  token});
+    if(name === ""){
+        rsp.status(403).json({error: "Username can not be empty"})
+    } else if(password === ""){
+        rsp.status(403).json({error: "Password can not be empty"})
+    } else {
+        req.db.get('SELECT * FROM users WHERE name=?', [name], (error, userDB) => {
+            if (error) throw error;
+            if (userDB === undefined) {
+                {
+                    bcrypt.genSalt(10, function (err, salt) {
+                        bcrypt.hash(password, salt, function (err, hash) {
+                            if (err) throw (err)
+                            req.db.run('insert into users values (?,?,?)', [name, hash, 1], function (err, user) {
+                                if (err) throw (err);
+                                let token = jwt.sign({
+                                    userName: name,
+                                    level: 1
+                                }, JWT_SECRET, {expiresIn: 120000000});
+                                rsp.status(201).json({username: name, token: token});
+                            });
                         });
                     });
+                }
+            } else {
+                bcrypt.compare(password, userDB.bcryptPassword, function (error, res) {
+                    if (error) throw error;
+                    if (res) {
+                        let token = jwt.sign({
+                            userName: userDB.name,
+                            level: userDB.level
+                        }, JWT_SECRET, {expiresIn: 120000000});
+                        rsp.status(201).json({username: name, token: token});
+                    } else {
+                        rsp.status(403).json({error: "Invalid credentials"});
+                    }
                 });
             }
-        } else {
-            bcrypt.compare(password, userDB.bcryptPassword, function (error, res) {
-                if (error) throw error;
-                if (res) {
-                    let token = jwt.sign({
-                        userName: userDB.name,
-                        level: userDB.level
-                    }, JWT_SECRET, {expiresIn: 120000000});
-                    rsp.status(201).json({username: name, token: token});
-                } else {
-                    rsp.status(403).json({error: "Invalid credentials"});
-                }
-            });
-        }
-    });
+        });
+    }
 });
 
 /**

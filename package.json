@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/THEozmic/getting-started-parcel#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.16.3",
     "path": "^0.12.7",
     "react": "^16.11.0",
