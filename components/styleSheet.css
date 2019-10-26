@@ -286,6 +286,10 @@ h2 > .material-icons {
     background: #ef552d;
 }
 
+#currentUser{
+    background: rgba(239, 107, 0, 0.55);
+}
+
 @media (max-width: 1000px) {
     #profileWrapper {
         table-layout: fixed;
