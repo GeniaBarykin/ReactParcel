@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withRouter} from "react-router";
 import './StyleSheet.css'
 import userImageSrc from '../img/user.png';
+import loading from "../img/loading.gif";
 
 export class Auth extends React.Component{
     constructor(props){
@@ -34,8 +35,8 @@ export class Auth extends React.Component{
     render() {
         if(this.state.user == undefined){
             return (
-                <div>
-                   loading
+                <div className='imageWrap'>
+                    <img src={loading}/>
                 </div>
             )
         }
