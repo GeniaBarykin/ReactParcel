@@ -32,7 +32,7 @@ router.get('/', function (req, rsp){
        if(!highScores) rsp.status(200).json({
            list: [{
                "userName": 'No one played yet',
-               "highscore": "be the first"
+               "highscore": "Be the first"
            }],
            currentUser: userName
        });
