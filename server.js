@@ -33,12 +33,14 @@ app.use(serveStatic(path.join(__dirname, 'dist')));
 app.get('/', function(req, res) {
      res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
 });
-app.get('/highscores', function(req, res) {
+app.get('/game', function(req, res) {
     res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
 });
 app.get('/app', function(req, res) {
     res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
 });
+
+
 
 // Put a reference to our db in the request, so that rules can easily access it.
 app.use(function(req,rsp,next){

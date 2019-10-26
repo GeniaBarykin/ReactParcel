@@ -20,6 +20,7 @@ export class Auth extends React.Component{
         axios.get("/api/auth/check", {headers: {Authorization: 'Bearer '+jwt}}).then(res => this.setState({
             user: res.data
         })).catch(err => {
+            localStorage.removeItem('secret-key');
             window.location="/";
         })
     }

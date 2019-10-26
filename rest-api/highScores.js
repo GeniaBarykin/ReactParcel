@@ -24,8 +24,13 @@ router.get('/', function (req, rsp){
  */
 router.get('/:name', function (req, rsp) {
     let userName = req.params.name;
-    req.db.all('SELECT * from highScores WHERE userName = ? ORDER BY highscore DESC', userName, function (err, highScore) {
-        if (!highScore) rsp.status(404).json({error: "User does not exist"});
+    req.db.get('SELECT * from highScores WHERE userName = ?', userName, function (err, highScore) {
+        if (!highScore) rsp.status(200).json(
+            {
+                "userName": userName,
+                "highscore": 0
+            }
+        );
         else {
             rsp.status(200).json(highScore);
         }
@@ -37,18 +42,16 @@ router.get('/:name', function (req, rsp) {
  */
 router.post('/', function (req, rsp) {
     let name = req.body.name;
-    let score = req.body.score;
-
     req.db.get('SELECT highscore FROM highScores WHERE userName = ?', name, function (err, userScore) {
         if (err) throw err;
         if (!userScore){
-            // let score = 0;
+            let score = 0;
             req.db.run('INSERT INTO highScores (userName,highscore) values(?, ?)', [name, score], function (err) {
                 if (err) throw err;
                 rsp.status(201).json({score: score});
             })
         } else {
-            // let score = userScore.highscore + 1;
+            let score = userScore.highscore + 1;
             req.db.run('UPDATE highScores SET highscore = ? WHERE userName = ?', [score, name], function (err) {
                 if (err) throw err;
                 rsp.status(201).json({score: score});
