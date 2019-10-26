@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import {AppLayout} from "./components/app.page";
+import {AppLayout} from "./components/game.page";
 import {Login} from "./components/login.page";
 import {Auth} from "./components/auth";
 import {HallOfFame} from "./components/halloffame.page";
@@ -14,7 +14,7 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Auth >
-                    <Route exact path="/app" component={HallOfFame} />
+                    <Route exact path="/hall" component={HallOfFame} />
                     <Route exact path="/game" component={AppLayout}/>
                 </Auth>
                 <Route path="*" component={() => "404 NOT FOUND"} />

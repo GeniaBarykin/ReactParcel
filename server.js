@@ -36,7 +36,7 @@ app.get('/', function(req, res) {
 app.get('/game', function(req, res) {
     res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
 });
-app.get('/app', function(req, res) {
+app.get('/hall', function(req, res) {
     res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
 });
 

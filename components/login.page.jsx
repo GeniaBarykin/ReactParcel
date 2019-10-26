@@ -17,7 +17,7 @@ export class Login extends React.Component{
         };
         axios.post('/api/auth', this.data).then(res => {
             localStorage.setItem("secret-key", res.data.token);
-            this.props.history.push("/app");
+            this.props.history.push("/hall");
         }).catch(err => {
            document.getElementById('warning').innerText = err.response.data.error;
         });
@@ -29,7 +29,7 @@ export class Login extends React.Component{
             return (
                 <Redirect
                     to={{
-                        pathname: "/app",
+                        pathname: "/hall",
                         state: {
                             from: this.props.location
                         }

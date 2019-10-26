@@ -48,7 +48,7 @@ export class AppLayout extends React.Component{
 
     goToTheHall(e){
         e.preventDefault()
-        this.props.history.push("/app")
+        this.props.history.push("/hall")
     }
 
     render() {
