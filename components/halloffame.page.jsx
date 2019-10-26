@@ -43,7 +43,7 @@ export class HallOfFame extends React.Component{
                                 { this.state.persons.map((person, index) => <li className="highscore" key={index}>{person.userName} : {person.highscore}</li>)}
                             </ol>
                         </div>
-                        <button  onClick={this.goToTheGame}>Play</button>
+                        <button id='playTheGame'  onClick={this.goToTheGame}>Play</button>
                     </section>
                 </div>
             </main>

@@ -64,7 +64,7 @@ export class AppLayout extends React.Component{
                         </div>
                     </section>
                     <div>
-                        <button  onClick={this.goToTheHall}>Hall of Fame</button>
+                        <button id='backToHall'  onClick={this.goToTheHall}>Hall of Fame</button>
                     </div>
                 </div>
             </main>
