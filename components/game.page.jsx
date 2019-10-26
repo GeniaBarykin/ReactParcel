@@ -1,7 +1,6 @@
 import React from "react";
 import axios from 'axios';
 import './StyleSheet.css'
-let clickCounter = 0;
 let userName = undefined;
 
 export class AppLayout extends React.Component{
@@ -17,20 +16,15 @@ export class AppLayout extends React.Component{
 
     componentDidMount() {
         const  jwt=localStorage.getItem('secret-key');
-        axios.get("/api/auth/check", {headers: {Authorization: 'Bearer '+jwt}}).then(
-            res => {
-                this.setState({user: res.data}),
-                userName = res.data.name
-                axios.get(`/api/highScores/`+ userName)
-                    .then(res => {
-                        const score = res.data.highscore;
-                        this.setState({ score: score});
-                    })
-            }
-            ).catch(err => {
-            localStorage.removeItem('secret-key');
-            window.location="/";
-        })
+        axios.get(`/api/highScores/myscore`, {headers: {Authorization: 'Bearer '+jwt}})
+            .then(res => {
+                const score = res.data.highscore;
+                this.setState({ score: score,
+                    user: res.data.userName});
+            }).catch(err => {
+                localStorage.removeItem('secret-key');
+                window.location="/";
+            })
     }
 
     componentWillUnmount() {
@@ -38,10 +32,8 @@ export class AppLayout extends React.Component{
 
     clickedButton(){
         this.setState({score: this.state.score+1});
-        let data = {
-            name: userName
-        };
-        axios.post('/api/highScores', data).catch(err => {
+        const  jwt=localStorage.getItem('secret-key');
+        axios.post('/api/highScores', {}, {headers: {Authorization: 'Bearer '+jwt}}).catch(err => {
            alert(err);
         });
     }

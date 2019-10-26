@@ -12,7 +12,8 @@ export class HallOfFame extends React.Component{
     }
 
     componentDidMount() {
-        axios.get(`/api/highScores`)
+        const  jwt=localStorage.getItem('secret-key');
+        axios.get(`/api/highScores`,{headers: {Authorization: 'Bearer '+jwt}})
             .then(res => {
                 const persons = res.data;
                 this.setState({ persons });
