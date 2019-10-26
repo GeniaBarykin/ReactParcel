@@ -1,6 +1,8 @@
 import React from "react";
 import axios from 'axios';
 import './StyleSheet.css'
+import loading from "../img/loading.gif";
+
 
 export class HallOfFame extends React.Component{
     constructor(props) {
@@ -29,8 +31,8 @@ export class HallOfFame extends React.Component{
     render() {
         if(this.state.persons == undefined){
             return (
-                <div>
-                    loading
+                <div className='imageWrap'>
+                    <img src={loading}/>
                 </div>
             )
         }

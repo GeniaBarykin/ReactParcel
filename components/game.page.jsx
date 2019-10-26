@@ -4,6 +4,7 @@ import './StyleSheet.css'
 import stage1 from '../img/stage1.png';
 import stage2 from '../img/stage2.png';
 import stage3 from '../img/stage3.png';
+import loading from '../img/loading.gif';
 
 export class AppLayout extends React.Component{
     constructor(props) {
@@ -54,8 +55,8 @@ export class AppLayout extends React.Component{
     render() {
         if(this.state.score===undefined){
             return (
-                <div>
-                    loading
+                <div className='imageWrap'>
+                    <img src={loading}/>
                 </div>
             )
         }
