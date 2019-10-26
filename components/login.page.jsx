@@ -50,7 +50,7 @@ export class Login extends React.Component{
                                     <h5 className='warning' id={'warning'}></h5>
                                 </label>
                             <div className='buttonPadding'>
-                                <button className = "buttonRow" type="submit"> login</button>
+                                <button className = "buttonRow" type="submit">Sign in/up</button>
                             </div>
                         </form>
                         </div>
