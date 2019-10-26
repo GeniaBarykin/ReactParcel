@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { withRouter} from "react-router";
 import './StyleSheet.css'
+import userImageSrc from '../img/user.png';
 
 export class Auth extends React.Component{
     constructor(props){
@@ -40,9 +41,14 @@ export class Auth extends React.Component{
         }
         return (
             <div>
-                <div>
-                    <h2>Hello {this.state.user.name}</h2>
-                    <button onClick={this.logout}>Logout</button>
+                <div id='profileWrapper'>
+                    <div className='Wrapper' id='profile' >
+                        <h3>{this.state.user.name}</h3>
+                        <div><img src={userImageSrc}></img></div>
+                    </div>
+                    <div className='buttonPadding'>
+                            <button className='buttonOverlay' onClick={this.logout}>Logout</button>
+                    </div>
                 </div>
                 {this.props.children}
 

@@ -38,20 +38,24 @@ export class Login extends React.Component{
             )
         } else {
             return (
-                <div>
+                <div className="loginForm">
                     <section className = "card">
-                        <form className="loginForm" onSubmit={this.handleSubmit}>
-                            <label>
-                                <label>Name:</label>
-                                <input type="text" id = "userName" className="inputRow" ref={(input) => this.username = input} />
-
-                                <label>Password:</label>
-                                <input type="text" id = "password" className="inputRow" ref={(input) => this.password = input} />
-                            </label>
-                            <button className = "buttonRow" type="submit"> login</button>
+                        <div className='container>'>
+                        <form  onSubmit={this.handleSubmit}>
+                                <label>
+                                    <label>Name:</label>
+                                    <input type="text" id = "userName" className="inputRow" ref={(input) => this.username = input} />
+                                    <label>Password:</label>
+                                    <input type="text" id = "password" className="inputRow" ref={(input) => this.password = input} />
+                                    <h5 className='warning' id={'warning'}></h5>
+                                </label>
+                            <div className='buttonPadding'>
+                                <button className = "buttonRow" type="submit"> login</button>
+                            </div>
                         </form>
-                        <h5 id={'warning'}></h5>
+                        </div>
                     </section>
+
                 </div>
             );
         }

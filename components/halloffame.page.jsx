@@ -37,13 +37,18 @@ export class HallOfFame extends React.Component{
         return (
             <main>
                 <div>
-                    <section className="card">
+                    <section className="card" id='listWrapper'>
+                        <div className='buttonPadding'>
+                            <h1 className='title'>Hall of fame</h1>
+                        </div>
                         <div>
                             <ol className= "highscore">
                                 { this.state.persons.map((person, index) => <li className="highscore" key={index}>{person.userName} : {person.highscore}</li>)}
                             </ol>
                         </div>
-                        <button id='playTheGame'  onClick={this.goToTheGame}>Play</button>
+                        <div className='buttonPadding'>
+                              <button className='transitionButt'   onClick={this.goToTheGame}>Play</button>
+                        </div>
                     </section>
                 </div>
             </main>

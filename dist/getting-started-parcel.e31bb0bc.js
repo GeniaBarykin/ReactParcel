@@ -20683,10 +20683,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _logo = _interopRequireDefault(require("../img/logo.svg"));
 
-var _parcelBack = _interopRequireDefault(require("../img/parcel-back.png"));
-
-var _parcelFront = _interopRequireDefault(require("../img/parcel-front.png"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Main = function Main() {

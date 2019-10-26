@@ -1,14 +1,17 @@
 import React from "react";
 import axios from 'axios';
 import './StyleSheet.css'
-let userName = undefined;
+import stage1 from '../img/stage1.png';
+import stage2 from '../img/stage2.png';
+import stage3 from '../img/stage3.png';
 
 export class AppLayout extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
             user: undefined,
-            score: undefined
+            score: undefined,
+            stage: 1
         }
         this.clickedButton = this.clickedButton.bind(this);
         this.goToTheHall = this.goToTheHall.bind(this);
@@ -27,11 +30,16 @@ export class AppLayout extends React.Component{
             })
     }
 
-    componentWillUnmount() {
-    }
-
     clickedButton(){
-        this.setState({score: this.state.score+1});
+        let currentStage =  this.state.stage;
+        currentStage++;
+        if(currentStage>4){
+            currentStage=1;
+        }
+        this.setState({
+            score: this.state.score+1,
+            stage: currentStage
+        });
         const  jwt=localStorage.getItem('secret-key');
         axios.put('/api/highScores', {}, {headers: {Authorization: 'Bearer '+jwt}}).catch(err => {
            alert(err);
@@ -51,21 +59,29 @@ export class AppLayout extends React.Component{
                 </div>
             )
         }
-
+        let source = "";
+        { this.state.stage==1 ?source=stage1
+                : this.state.stage==3 ? source=stage3
+                : source=stage2
+        }
         return (
             <main>
-                <div>
-                    <section className="card checked">
+                <div id='gameLayout'>
+                    <section  className="card checked">
                         <div className="inputRow">
                             <h1>Click-the-button!</h1>
+                        </div>
+                        <div className='imageWrap'>
+                            <img src={source}/>
                         </div>
                         <div className="clicker">
                             <button id='clickerButton' onClick={this.clickedButton}>{this.state.score}</button>
                         </div>
+                        <div className='buttonPadding' id='backToHall'>
+                            <button className='transitionButt'  onClick={this.goToTheHall}>Hall of Fame</button>
+                        </div>
                     </section>
-                    <div>
-                        <button id='backToHall'  onClick={this.goToTheHall}>Hall of Fame</button>
-                    </div>
+
                 </div>
             </main>
         )
