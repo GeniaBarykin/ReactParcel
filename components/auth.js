@@ -40,9 +40,12 @@ export class Auth extends React.Component{
         }
         return (
             <div>
-                <h2>Hello {this.state.user.name}</h2>
+                <div>
+                    <h2>Hello {this.state.user.name}</h2>
+                    <button onClick={this.logout}>Logout</button>
+                </div>
                 {this.props.children}
-                <button onClick={this.logout}>Logout</button>
+
             </div>
         )
     }

@@ -33,7 +33,7 @@ export class AppLayout extends React.Component{
     clickedButton(){
         this.setState({score: this.state.score+1});
         const  jwt=localStorage.getItem('secret-key');
-        axios.post('/api/highScores', {}, {headers: {Authorization: 'Bearer '+jwt}}).catch(err => {
+        axios.put('/api/highScores', {}, {headers: {Authorization: 'Bearer '+jwt}}).catch(err => {
            alert(err);
         });
     }

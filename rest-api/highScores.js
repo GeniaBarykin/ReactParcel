@@ -56,7 +56,7 @@ router.get('/myscore', function (req, rsp) {
 /**
  * Adds a click to the users score
  */
-router.post('/', function (req, rsp) {
+router.put('/', function (req, rsp) {
     req.db.get('SELECT highscore FROM highScores WHERE userName = ?', userName, function (err, userScore) {
         if (err) throw err;
         if (!userScore){
