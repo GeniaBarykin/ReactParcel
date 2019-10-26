@@ -296,6 +296,10 @@ h2 > .material-icons {
     background: rgba(239, 107, 0, 0.55);
 }
 
+#backToHall{
+    padding-top: 3%;
+}
+
 @media (max-width: 1000px) {
     #profileWrapper {
         table-layout: fixed;
@@ -369,7 +373,7 @@ h2 > .material-icons {
     }
 
     #backToHall{
-        padding-top: 70%;
+        padding-top: 75%;
     }
 
     .clicker {
