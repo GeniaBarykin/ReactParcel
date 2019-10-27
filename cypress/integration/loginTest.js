@@ -14,8 +14,8 @@ context("GameTest", () => {
             .type("CypressTestPassword")
             .should('have.value', "CypressTestPassword")
 
-        cy.get(".loginForm").submit()
-        cy.url().should("contain", "app")
+        cy.get("#loginForm").submit()
+        cy.url().should("contain", "hall")
     })
 
     it("AllowsSignIn", () => {
@@ -27,8 +27,8 @@ context("GameTest", () => {
             .type("CypressTestPassword")
             .should('have.value', "CypressTestPassword")
 
-        cy.get(".loginForm").submit()
-        cy.url().should("contain", "app")
+        cy.get("#loginForm").submit()
+        cy.url().should("contain", "hall")
     })
 
     it("RefusesWrongPasswords", () => {
@@ -40,8 +40,8 @@ context("GameTest", () => {
             .type("VeryWrongPassword")
             .should('have.value', "VeryWrongPassword")
 
-        cy.get(".loginForm").submit()
-            .next().should('contain', "Invalid credentials")
+        cy.get("#loginForm").submit()
+        cy.get(".warning").should('contain', "Invalid credentials")
     })
 
     it("RefusesEmptyname", () => {
@@ -49,8 +49,8 @@ context("GameTest", () => {
             .type("CypressTestPassword")
             .should('have.value', "CypressTestPassword")
 
-        cy.get(".loginForm").submit()
-            .next().should('contain', "Username can not be empty")
+        cy.get("#loginForm").submit()
+        cy.get(".warning").should('contain', "Username can not be empty")
     })
 
     it("RefusesEmptyPassword", () => {
@@ -58,7 +58,7 @@ context("GameTest", () => {
             .type("CypressTestName")
             .should('have.value', "CypressTestName")
 
-        cy.get(".loginForm").submit()
-            .next().should('contain', "Password can not be empty")
+        cy.get("#loginForm").submit()
+        cy.get(".warning").should('contain', "Password can not be empty")
     })
 })

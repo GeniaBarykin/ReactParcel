@@ -76,7 +76,7 @@ main {
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
-ol.highscore{
+ul.highscore{
     font-size: inherit;
     padding: 0.5em;
     border-radius: 3px;
@@ -84,6 +84,7 @@ ol.highscore{
     outline-width: 0;
     max-height: 400px;
     overflow: auto;
+    list-style-type: none;
 }
 
 li.highscore{
@@ -92,6 +93,18 @@ li.highscore{
     list-style-position: inside;
     padding: 0.5em;
     border-radius: 3px;
+}
+
+li.highscore:nth-child(1){
+    background-color: darkgoldenrod;
+}
+
+li.highscore:nth-child(2){
+    background-color: #aaa9ad;
+}
+
+li.highscore:nth-child(3){
+    background-color: #cd7f32;
 }
 
 input, button, select {
@@ -385,4 +398,49 @@ h2 > .material-icons {
     }
 
 }
+.rainbow{
+    animation: rainbow 2.5s linear;
+    animation-iteration-count: infinite;
+    font-family: "Copperplate Gothic Bold";
+    text-transform: uppercase;
+    font-size: 40px;
+}
 
+@keyframes rainbow{
+    100%,0%{
+        color: rgb(255,0,0);
+    }
+    8%{
+        color: rgb(255,127,0);
+    }
+    16%{
+        color: rgb(255,255,0);
+    }
+    25%{
+        color: rgb(127,255,0);
+    }
+    33%{
+        color: rgb(0,255,0);
+    }
+    41%{
+        color: rgb(0,255,127);
+    }
+    50%{
+        color: rgb(0,255,255);
+    }
+    58%{
+        color: rgb(0,127,255);
+    }
+    66%{
+        color: rgb(0,0,255);
+    }
+    75%{
+        color: rgb(127,0,255);
+    }
+    83%{
+        color: rgb(255,0,255);
+    }
+    91%{
+        color: rgb(255,0,127);
+    }
+}

@@ -70,13 +70,13 @@ export class AppLayout extends React.Component{
                 <div id='gameLayout'>
                     <section  className="card checked">
                         <div className="inputRow">
-                            <h1>Click-the-button!</h1>
+                            <h1  className="rainbow">Click-the-button!</h1>
                         </div>
                         <div className='imageWrap'>
                             <img src={source}/>
                         </div>
                         <div className="clicker">
-                            <button id='clickerButton' onClick={this.clickedButton}>{this.state.score}</button>
+                            <button id='clickerButton' value={this.state.score} onClick={this.clickedButton}>{this.state.score}</button>
                         </div>
                         <div className='buttonPadding' id='backToHall'>
                             <button className='transitionButt'  onClick={this.goToTheHall}>Hall of Fame</button>

@@ -44,7 +44,7 @@ export class Auth extends React.Component{
             <div>
                 <div id='profileWrapper'>
                     <div className='Wrapper' id='profile' >
-                        <h3>{this.state.user.name}</h3>
+                        <h3 id="name">{this.state.user.name}</h3>
                         <div><img src={userImageSrc}></img></div>
                     </div>
                     <div className='buttonPadding'>

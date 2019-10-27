@@ -49,15 +49,15 @@ export class HallOfFame extends React.Component{
                 <div>
                     <section className="card" id='listWrapper'>
                         <div className='buttonPadding'>
-                            <h1 className='title'>Hall of fame</h1>
+                            <h1 className='rainbow'>Hall of fame</h1>
                         </div>
                         <div>
-                            <ol className= "highscore">
+                            <ul id="orderedList" className= "highscore">
                                 { this.state.persons.map((person, index) =>
-                                    <li id={ this.state.user == person.userName ? 'currentUser'
+                                    <li value={person.highscore} id={ this.state.user == person.userName ? 'currentUser'
                                     : index}
                                         className="highscore" key={index}>{person.userName} : {person.highscore}</li>)}
-                            </ol>
+                            </ul>
                         </div>
                         <div className='buttonPadding'>
                               <button className='transitionButt'   onClick={this.goToTheGame}>Play</button>

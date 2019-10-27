@@ -41,7 +41,7 @@ export class Login extends React.Component{
                 <div className="loginForm">
                     <section className = "card">
                         <div className='container>'>
-                        <form  onSubmit={this.handleSubmit}>
+                        <form id="loginForm"onSubmit={this.handleSubmit}>
                                 <label>
                                     <label>Name:</label>
                                     <input type="text" id = "userName" className="inputRow" ref={(input) => this.username = input} />
