@@ -25,6 +25,7 @@ router.use(function (req, rsp, next) {
 
 /**
  * Gets a json with all userNames, score sorted by score DESC
+ * And also returns current user's name
  */
 
 router.get('/', function (req, rsp){
@@ -47,7 +48,7 @@ router.get('/', function (req, rsp){
 });
 
 /**
- * Gets the scores of a specific user
+ * Gets the scores of current user
  */
 router.get('/myscore', function (req, rsp) {
     req.db.get('SELECT * from highScores WHERE userName = ?', userName, function (err, highScore) {
