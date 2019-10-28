@@ -8,7 +8,7 @@ context("HallOfFameTest", () => {
             .type("CypressTestPassword")
 
         cy.get("#loginForm").submit()
-
+        cy.get('#listWrapper')
         cy.visit('http://localhost:5000/hall')
     })
 
@@ -23,14 +23,15 @@ context("HallOfFameTest", () => {
 
     it("Orders the list", ()=>{
         cy.get('ul>li').each(($el, index, $list) => {
-
             cy.get($el).invoke("attr", "value").then(($ele) => {
                 var score = $ele
-                cy.get($el)
-                    .next()
-                    .invoke("attr", "value").then(($el2) => {
-                    expect($el2).to.be.lessThan(score)
-                })
+                if(cy.get($el).index<$list.length) {
+                    cy.get($el)
+                        .next()
+                        .invoke("attr", "value").then(($el2) => {
+                        expect(parseInt($el2) - 1).to.be.lessThan(parseInt(score))
+                    })
+                }
             })
         })
     })

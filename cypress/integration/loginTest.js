@@ -15,6 +15,7 @@ context("GameTest", () => {
             .should('have.value', "CypressTestPassword")
 
         cy.get("#loginForm").submit()
+        cy.get('#listWrapper')
         cy.url().should("contain", "hall")
     })
 
@@ -28,6 +29,7 @@ context("GameTest", () => {
             .should('have.value', "CypressTestPassword")
 
         cy.get("#loginForm").submit()
+        cy.get('#listWrapper')
         cy.url().should("contain", "hall")
     })
 

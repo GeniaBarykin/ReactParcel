@@ -8,6 +8,7 @@ context("GameTest", () => {
             .type("CypressTestPassword")
 
         cy.get("#loginForm").submit()
+        cy.get('#listWrapper')
         cy.visit("http://localhost:5000/game")
         })
 
