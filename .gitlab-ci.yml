@@ -23,7 +23,7 @@ test:
     # install node modules
     - npm ci
     # start the server in the background
-    - npm start & parcel index.html
+    - npm start
     # run the tests
     - npx cypress run
   artifacts:
