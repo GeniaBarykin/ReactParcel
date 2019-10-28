@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import axios from 'axios';
 import {Redirect} from "react-router";
-import './StyleSheet.css'
+//import './StyleSheet.css'
 
 export class Login extends React.Component{
     constructor(props) {

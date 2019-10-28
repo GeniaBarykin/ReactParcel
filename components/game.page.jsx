@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import './StyleSheet.css'
+//import './StyleSheet.css'
 import stage1 from '../img/stage1.png';
 import stage2 from '../img/stage2.png';
 import stage3 from '../img/stage3.png';
