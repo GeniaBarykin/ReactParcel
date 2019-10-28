@@ -5,13 +5,13 @@
   "main": "index.js",
   "proxy": "http://localhost:5000",
   "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "parcel:dev": "./node_modules/.bin/parcel  index.html",
     "parcel:watch": "./node_modules/.bin/parcel watch index.html",
-    "parcel:build": "./node_modules/.bin/parcel build index.html",
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "parcel:build": "./node_modules/.bin/parcel build index.html"
   },
   "homepage": "https://github.com/THEozmic/getting-started-parcel#readme",
   "dependencies": {

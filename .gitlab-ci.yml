@@ -22,6 +22,7 @@ test:
   script:
     # install node modules
     - npm ci
+    - npm build
     # start the server in the background
     - npm start &
     # run the tests
