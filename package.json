@@ -8,7 +8,7 @@
     "dev": "parcel index.html",
     "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/parcel build index.html && node server.js",
+    "start": "node server.js",
     "parcel:dev": "./node_modules/.bin/parcel  index.html",
     "parcel:watch": "./node_modules/.bin/parcel watch index.html",
     "parcel:build": "./node_modules/.bin/parcel build index.html"
