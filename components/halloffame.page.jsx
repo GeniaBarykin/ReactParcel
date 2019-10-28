@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-//import './StyleSheet.css'
+import './styleSheet.css'
 import loading from "../img/loading.gif";
 import stage1 from "../img/stage1.png";
 import stage3 from "../img/stage3.png";

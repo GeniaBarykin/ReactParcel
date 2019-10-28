@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { withRouter} from "react-router";
-//import './StyleSheet.css'
+import './styleSheet.css'
 import userImageSrc from '../img/user.png';
 import loading from "../img/loading.gif";
 
