@@ -22,7 +22,6 @@ test:
   script:
     # install node modules
     - npm ci
-    - npx parcel build index.html
     # start the server in the background
     - npm start &
     # run the tests
