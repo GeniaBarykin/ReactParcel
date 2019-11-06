@@ -2,13 +2,13 @@ let router = module.exports = require('express').Router();
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "aWV$AfceSCDsF1xazfjvaqzc4te";
 
-let userName;
+
 
 
 /**
  * Checks authorization
  */
-router.use(function (req, rsp, next) {
+function getUser (req, rsp) {
     if (req.headers.authorization === undefined) rsp.status(401).json({error: "No permission"});
     else {
         var token = req.headers.authorization.split(' ')[1];
@@ -16,11 +16,13 @@ router.use(function (req, rsp, next) {
             if (err) throw err;
             if (decoded.level === 1 || decoded.level === 9) {
                 userName = decoded.userName;
-                next();
+                return userName;
+            } else {
+                throw err;
             }
         });
     }
-});
+};
 
 
 /**
@@ -35,12 +37,12 @@ router.get('/', function (req, rsp){
                "userName": 'No one played yet',
                "highscore": "Be the first"
            }],
-           currentUser: userName
+           currentUser: getUser(req,rsp)
        });
        else{
            let data = {
                list: highScores,
-               currentUser: userName
+               currentUser: getUser(req,rsp)
            }
            rsp.status(200).json(data);
        }
@@ -51,6 +53,7 @@ router.get('/', function (req, rsp){
  * Gets the scores of current user
  */
 router.get('/myscore', function (req, rsp) {
+    let userName = getUser(req,rsp);
     req.db.get('SELECT * from highScores WHERE userName = ?', userName, function (err, highScore) {
         if (!highScore) rsp.status(200).json(
             {
@@ -68,6 +71,7 @@ router.get('/myscore', function (req, rsp) {
  * Adds a click to the users score
  */
 router.put('/', function (req, rsp) {
+    let userName = getUser(req,rsp);
     req.db.get('SELECT highscore FROM highScores WHERE userName = ?', userName, function (err, userScore) {
         if (err) throw err;
         if (!userScore){
