@@ -15,8 +15,7 @@ function getUser (req, rsp) {
         jwt.verify(token, JWT_SECRET, function (err, decoded) {
             if (err) throw err;
             if (decoded.level === 1 || decoded.level === 9) {
-                userName = decoded.userName;
-                return userName;
+                return  decoded.userName;
             } else {
                 throw err;
             }
