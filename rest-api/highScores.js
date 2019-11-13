@@ -59,8 +59,8 @@ router.get('/', function (req, rsp) {
 /**
  * Gets the scores of current user
  */
-router.get('/myscore', async function (req, rsp) {
-    let userName = await getUser(req,rsp,function (user) {
+router.get('/myscore', function (req, rsp) {
+    getUser(req,rsp,function (user) {
         req.db.get('SELECT * from highScores WHERE userName = ?', user, function (err, highScore) {
             if (!highScore) rsp.status(200).json(
                 {
@@ -80,7 +80,7 @@ router.get('/myscore', async function (req, rsp) {
  * Adds a click to the users score
  */
 router.put('/', function (req, rsp) {
-    let userName = getUser(req,rsp, function (user) {
+    getUser(req,rsp, function (user) {
         req.db.get('SELECT highscore FROM highScores WHERE userName = ?', user, function (err, userScore) {
             if (err) throw err;
             if (!userScore){
