@@ -5,7 +5,7 @@
   "main": "index.js",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "dev": "parcel index.html",
+    "dev": "index.html && node server.js",
     "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/parcel build index.html && node server.js",

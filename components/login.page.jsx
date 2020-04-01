@@ -22,6 +22,7 @@ export class Login extends React.Component{
            document.getElementById('warning').innerText = err.response.data.error;
         });
     }
+	
 
 
     render() {
@@ -46,7 +47,7 @@ export class Login extends React.Component{
                                     <label>Name:</label>
                                     <input type="text" id = "userName" className="inputRow" ref={(input) => this.username = input} />
                                     <label>Password:</label>
-                                    <input type="text" id = "password" className="inputRow" ref={(input) => this.password = input} />
+                                    <input type="password" id = "password" className="inputRow" ref={(input) => this.password = input} />
                                     <h5 className='warning' id={'warning'}></h5>
                                 </label>
                             <div className='buttonPadding'>

@@ -62,12 +62,18 @@ router.get('/', function (req, rsp) {
 router.get('/myscore', function (req, rsp) {
     getUser(req,rsp,function (user) {
         req.db.get('SELECT * from highScores WHERE userName = ?', user, function (err, highScore) {
-            if (!highScore) rsp.status(200).json(
+            if (!highScore) {
+				let score = 0;
+                req.db.run('INSERT INTO highScores (userName,highscore) values(?, ?)', [user, score], function (err) {
+                    if (err) throw err;
+                })
+				rsp.status(200).json(
                 {
                     "userName": user,
                     "highscore": 0
                 }
             );
+			}
             else {
                 rsp.status(200).json(highScore);
             }
